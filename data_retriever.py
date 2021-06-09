@@ -10,11 +10,11 @@ def read_tickers():
 def get_time_series_daily(tickers, key):
     for symbol in tickers:
         print(symbol) # to keep track of where we are
-        response = requests.get(f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol={symbol}&apikey={key}')
+        response = requests.get(f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol={symbol}&apikey={key}&outputsize=full')
         if response.status_code == 200:
             response_dict = response.json()
             df = pd.DataFrame.from_dict(response_dict['Time Series (Daily)'])
-            df.to_csv(f'data/time_series_daily/{symbol}.csv')
+            df.to_csv(f'data/time_series_daily_curated/{symbol}.csv')
             time.sleep(12) # max 5 requests per minute
 
 
@@ -25,4 +25,4 @@ def get_company_overview(tickers, key):
 
 if __name__ == '__main__':
     api_key = input()
-    get_time_series_daily(read_tickers()['Symbol'], api_key)
+    get_time_series_daily(['NKE'], api_key)
