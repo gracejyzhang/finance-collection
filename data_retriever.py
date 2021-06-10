@@ -25,4 +25,4 @@ def get_company_overview(tickers, key):
 
 if __name__ == '__main__':
     api_key = input()
-    get_time_series_daily(['NKE'], api_key)
+    get_time_series_daily(['NFLX','TSLA','IGV','SPY','QQQ','IWM','DIA','XLE','XLP'], api_key)
